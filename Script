@@ -1,0 +1,44 @@
+let panier = JSON.parse(localStorage.getItem("panier")) || []
+
+function ajouterPanier(){
+
+let produit = document.getElementById("produit")
+let nom = produit.options[produit.selectedIndex].text
+let prix = parseFloat(produit.value)
+
+let quantite = document.getElementById("quantite").value
+
+panier.push({nom,prix,quantite})
+
+localStorage.setItem("panier",JSON.stringify(panier))
+
+alert("Produit ajouté au panier")
+
+}
+
+function afficherPanier(){
+
+let table = document.getElementById("panier")
+let total = 0
+
+panier.forEach(item =>{
+
+let prixTotal = item.prix * item.quantite
+
+let row = table.insertRow()
+
+row.insertCell(0).innerHTML = item.nom
+row.insertCell(1).innerHTML = item.quantite
+row.insertCell(2).innerHTML = prixTotal+"$"
+
+total += prixTotal
+
+})
+
+document.getElementById("total").innerText = total
+
+}
+
+if(document.getElementById("panier")){
+afficherPanier()
+}

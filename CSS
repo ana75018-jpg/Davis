@@ -1,0 +1,51 @@
+body{
+font-family:Arial;
+background:#efe3cf;
+margin:0;
+text-align:center;
+}
+
+header{
+background:#5b3a29;
+padding:20px;
+color:white;
+}
+
+.logo{
+width:250px;
+}
+
+.container{
+background:white;
+max-width:700px;
+margin:40px auto;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+input,select,textarea{
+width:80%;
+padding:10px;
+margin:10px;
+}
+
+button{
+background:#c79a5c;
+border:none;
+color:white;
+padding:10px 20px;
+border-radius:5px;
+cursor:pointer;
+}
+
+table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+}
+
+th,td{
+padding:10px;
+border-bottom:1px solid #ddd;
+}
