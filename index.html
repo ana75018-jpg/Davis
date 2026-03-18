@@ -121,6 +121,9 @@ button{
 <option>Millard's</option>
 <option>Ferme Grapeseed</option>
 <option>LTD Grove Street</option>
+<option>LTD Little Seoul</option>
+<option>LTD Sandy Shores</option>
+<option>LTD Roxwood</option>
 </select>
 
 <input type="date" id="date">
@@ -200,16 +203,50 @@ fetch("https://discord.com/api/webhooks/1483605241546145792/LH573t2e9hi21OKEUwNh
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
-content:
-"📦 Nouvelle commande\n\n"+
-"👤 "+prenom+" "+nom+"\n"+
-"📞 "+tel+"\n"+
-"🏢 "+partenaire+"\n"+
-"📅 "+date+" "+heure+"\n\n"+
-details+
-"\n💰 Total: "+panier.reduce((a,b)=>a+b.prix,0)+"$"+
-"\n📝 "+(commentaire||"Aucun")
-})
+embeds:[{
+title:"📦 Nouvelle commande - Davis Quartz",
+color:16753920,
+fields:[
+{
+name:"👤 Client",
+value: prenom+" "+nom,
+inline:true
+},
+{
+name:"📞 Téléphone",
+value: tel || "Non renseigné",
+inline:true
+},
+{
+name:"🏢 Partenaire",
+value: partenaire,
+inline:false
+},
+{
+name:"📅 Livraison",
+value: date+" à "+heure,
+inline:false
+},
+{
+name:"🛒 Commande",
+value: "```"+details+"```"
+},
+{
+name:"💰 Total",
+value: panier.reduce((a,b)=>a+b.prix,0)+"$",
+inline:true
+},
+{
+name:"📝 Commentaire",
+value: commentaire || "Aucun",
+inline:false
+}
+],
+footer:{
+text:"Davis Quartz • Système de commande"
+},
+timestamp:new Date().toISOString()
+}]
 })
 
 let notif=document.getElementById("notif")
