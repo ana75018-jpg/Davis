@@ -121,9 +121,6 @@ button{
 <option>Millard's</option>
 <option>Ferme Grapeseed</option>
 <option>LTD Grove Street</option>
-<option>LTD Little Seoul</option>
-<option>LTD Sandy Shores</option>
-<option>LTD Roxwood</option>
 </select>
 
 <input type="date" id="date">
@@ -140,9 +137,7 @@ let produits=[
 {nom:"Charbon",prix:10},
 {nom:"Fer",prix:15},
 {nom:"Cuivre",prix:14},
-{nom:"Or",prix:45},
-{nom:"Scie",prix:20},
-{nom:"Seau",prix:18}
+{nom:"Or",prix:45}
 ]
 
 let selected=null
@@ -199,13 +194,18 @@ panier.forEach(i=>{
 details+=`- ${i.nom} x${i.q} = ${i.prix}$\n`
 })
 
-fetch("https://discord.com/api/webhooks/1483605241546145792/LH573t2e9hi21OKEUwNhEwaflwNd_1fT44JfsaQiDT9E8vwi8GqBOQjzTL14w45_Yyql",{
+fetch("TON_WEBHOOK_DISCORD_ICI",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
 embeds:[{
 title:"📦 Nouvelle commande - Davis Quartz",
-color:16753920,
+color:3447003,
+
+thumbnail:{
+url:"https://tonsite.netlify.app/logo.png"
+},
+
 fields:[
 {
 name:"👤 Client",
@@ -219,13 +219,11 @@ inline:true
 },
 {
 name:"🏢 Partenaire",
-value: partenaire,
-inline:false
+value: partenaire
 },
 {
 name:"📅 Livraison",
-value: date+" à "+heure,
-inline:false
+value: date+" à "+heure
 },
 {
 name:"🛒 Commande",
@@ -238,15 +236,18 @@ inline:true
 },
 {
 name:"📝 Commentaire",
-value: commentaire || "Aucun",
-inline:false
+value: commentaire || "Aucun"
 }
 ],
+
 footer:{
 text:"Davis Quartz • Système de commande"
 },
+
 timestamp:new Date().toISOString()
+
 }]
+})
 })
 
 let notif=document.getElementById("notif")
