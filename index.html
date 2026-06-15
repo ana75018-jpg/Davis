@@ -4460,8 +4460,8 @@ function renderPayes(){
     // Si pas de ligne manuelle, on agrège les déclas comme fallback
     let sal;
     if(manual){
-      const discordExp=(window._discordExports&&window._discordExports[manual.casier]>0)?window._discordExports[manual.casier]:null;
-      const effExp=discordExp??manual.exports||0;
+      const discordExp=(window._discordExports&&window._discordExports[manual.casier]>0)?window._discordExports[manual.casier]:0;
+      const effExp=discordExp||manual.exports||0;
       sal=calcSal({...manual, exports:effExp});
     } else {
       const declQty=decls.reduce((s,d)=>s+(d.quantite||0),0);
